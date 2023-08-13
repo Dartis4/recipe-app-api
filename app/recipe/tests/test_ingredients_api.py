@@ -75,11 +75,11 @@ class PrivateIngredientsApiTests(TestCase):
     def test_update_ingredient(self):
         """Test updating an ingredient."""
         ingredient = Ingredient.objects.create(user=self.user, name='Cilantro')
- 
+
         payload = {'name': 'Coriander'}
         url = detail_url(ingredient.id)
         res = self.client.patch(url, payload)
- 
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         ingredient.refresh_from_db()
         self.assertEqual(ingredient.name, payload['name'])
